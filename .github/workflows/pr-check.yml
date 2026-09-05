@@ -1,0 +1,19 @@
+name : pr_safety_checker
+on :
+    pull_request:
+        branches : ["main"]
+jobs :
+    docker-safety-check:
+        runs-on : ubuntu-24.04
+        steps:
+            - name : checkout
+              uses : actions/checkout@v4
+            - name : build
+              run : docker build -t pr-safety-checker:latest -f sample-app/Dockerfile sample-app/
+            - name : trivy check
+              uses : aquasecurity/trivy-action@v2
+
+
+
+
+
