@@ -20,3 +20,4 @@ if __name__ == "__main__":
     headers = {"Authorization": f"Bearer {token}"}
     response=post_comment(api,headers,formatted_report)
     print(response.status_code)
+    print(response.text)
