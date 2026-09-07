@@ -11,7 +11,7 @@ jobs :
             - name : build
               run : docker build -t pr-safety-checker:latest -f sample-app/Dockerfile sample-app/
             - name : trivy check
-              uses : aquasecurity/trivy-action@0.0.6
+              uses : aquasecurity/trivy-action@0.36.0
               with :
                 format : json
                 image-ref: pr-safety-checker:latest
