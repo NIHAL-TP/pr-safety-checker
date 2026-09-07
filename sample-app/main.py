@@ -8,7 +8,7 @@ load_dotenv()
 
 if __name__ == "__main__":
     REPO="pr-safety-checker"
-    ISSUE_NUMBER="1"
+    ISSUE_NUMBER=os.getenv("ISSUE_NUMBER")
     data=sys.argv[1]
     trivy_data=load_trivy_results(data)
     severity_count=count_by_severity(trivy_data)
