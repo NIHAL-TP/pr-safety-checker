@@ -22,7 +22,7 @@ jobs :
                 python3 main.py trivy-results.json
               env :
                 GITHUB_TOKEN : ${{secrets.GITHUB_TOKEN}}
-                GITHUB_USER : ${{github.actor
+                GITHUB_USER : ${{github.actor}}
                 ISSUE_NUMBER : ${{github.event.pull_request.number}}
 
 
