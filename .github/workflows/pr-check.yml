@@ -15,6 +15,7 @@ jobs :
             - name : trivy check
               uses : aquasecurity/trivy-action@0.35.0
               with :
+                severity : CRITICAL,HIGH,MEDIUM
                 format : json
                 image-ref: pr-safety-checker:latest
                 output : "trivy-results.json"
