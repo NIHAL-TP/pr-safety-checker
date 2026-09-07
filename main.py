@@ -19,3 +19,4 @@ if __name__ == "__main__":
     api=f"https://api.github.com/repos/{username}/{REPO}/issues/{ISSUE_NUMBER}/comments"
     headers = {"Authorization": f"Bearer {token}"}
     response=post_comment(api,headers,formatted_report)
+    print(response.status_code)
