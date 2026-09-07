@@ -19,7 +19,7 @@ jobs :
             - name : post comment
               run : |
                 pip install python-dotenv requests
-                python3 main.py trivy-results.json
+                python3 sample-app/main.py trivy-results.json
               env :
                 GITHUB_TOKEN : ${{secrets.GITHUB_TOKEN}}
                 GITHUB_USER : ${{github.actor}}
