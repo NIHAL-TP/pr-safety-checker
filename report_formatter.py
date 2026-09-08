@@ -1,7 +1,7 @@
 from parser import load_trivy_results,count_by_severity,extract_findings
 import sys
 import json
-
+#is
 
 def get_severity_rank(finding):
     severity_rank = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 4, "UNKNOWN": 3}
