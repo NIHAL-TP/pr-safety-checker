@@ -8,6 +8,7 @@ load_dotenv()
 
 
 def post_comment(api,headers,comment):
+    print("api:",api)
     response=requests.post(api,headers = headers,json={"body":comment})
     return response
 
