@@ -15,10 +15,15 @@ jobs :
             - name : trivy check
               uses : aquasecurity/trivy-action@0.35.0
               with :
-                severity : CRITICAL,HIGH,MEDIUM
                 format : json
                 image-ref: pr-safety-checker:latest
                 output : "trivy-results.json"
+            - name : artifact builder
+              uses : actions/upload-artifact@v4
+              with :
+                name : full scan report
+                path : full_report.md
+
             - name : post comment
               run : |
                 pip install python-dotenv requests

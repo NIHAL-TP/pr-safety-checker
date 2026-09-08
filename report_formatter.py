@@ -3,7 +3,19 @@ import sys
 import json
 
 
-def report_formatter(findings,count):
+def get_severity_rank(finding):
+    severity_rank = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 4, "UNKNOWN": 3}
+    return severity_rank[finding["severity"]]
+
+
+def findings_to_show(findings,MAX_FINDINGS_SHOWN):
+    findings_to_show = findings[:MAX_FINDINGS_SHOWN]
+    remaining_count = len(findings) - len(findings_to_show)
+    return findings_to_show,remaining_count
+
+
+
+def report_formatter(findings,count,remaining_count,cap=True):
     header_line=[]
     seperator_line=[]
     content=[]
@@ -33,18 +45,25 @@ def report_formatter(findings,count):
     table.append(combined_seperator)
     table.append(combined_content)
     table = "\n".join(table)
-    table = f"**Summary:** {count['HIGH']} HIGH, {count['MEDIUM']} MEDIUM issues found" + "\n" + table
+    if cap:
+        table = f"**Summary:** {count['CRITICAL']} CRITICAL, {count['HIGH']} HIGH, {count['MEDIUM']} MEDIUM, {count['LOW']} LOW, {count['UNKNOWN']} UNKNOWN severity issues found.\n Top 50 issues shown below,check artifacts for further details" + "\n" + table
+    else:
+        table = table
+    print("length of table is ",len(table))
     return table
 
     
 
 if __name__ == "__main__" :
     json_path=sys.argv[1]
+    max_findings_shown=10
     trivy_data = load_trivy_results(json_path)
     severity_count = count_by_severity(trivy_data)
     findings = extract_findings(trivy_data)
-    """for i in findings:
-        print("\n\n\n")
-        for j in i:
-            print(f"{j} : {i[j]}")"""
-    print("findings in markdown \n",report_formatter(findings,severity_count))
+    severity_rank = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
+    sorted_findings = sorted(findings, key=get_severity_rank)
+    print(sorted_findings)
+    findings_to_show,remaining_count=findings_to_show(sorted_findings,max_findings_shown)
+    #print(findings)
+    print("remaining count:",remaining_count)
+    print("findings in markdown \n",report_formatter(findings_to_show,severity_count,remaining_count))

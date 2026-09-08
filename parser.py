@@ -31,9 +31,7 @@ def count_by_severity(trivy_data):
 
 
 
-def get_severity_rank(finding):
-    severity_rank = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3, "UNKNOWN": 4}
-    return severity_rank[finding["severity"]]
+
 
 
 def extract_findings(trivy_data):
@@ -62,6 +60,4 @@ if __name__ == "__main__":
     #print("\n\n findings:\n\n",extract_findings(data))
     #print("\n \n severitycount= ",count_by_severity(data))
     findings=extract_findings(data)
-    severity_rank = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
-    sorted_findings = sorted(findings, key=get_severity_rank)
-    print(sorted_findings)
+    
