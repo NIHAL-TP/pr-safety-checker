@@ -28,7 +28,6 @@ jobs :
                 GITHUB_USER : ${{github.actor}}
                 ISSUE_NUMBER : ${{github.event.pull_request.number}}
                 RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-                RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             - name : artifact builder
               uses : actions/upload-artifact@v4
               with :
