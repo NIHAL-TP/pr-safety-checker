@@ -33,5 +33,5 @@ if __name__ == "__main__":
     print(response.text)
     print("Token length:", len(token) if token else "None")
     print("Token starts with:", token[:4] if token else "None")
-    with open("full_Report.md","w") as f:
+    with open("full_report.md","w") as f:
         f.write(uncapped_formatted_report)
