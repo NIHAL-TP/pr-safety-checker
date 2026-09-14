@@ -1,7 +1,7 @@
 import requests
 import sys
-from parser import load_trivy_results, extract_findings, count_by_severity
-from report_formatter import report_formatter
+from trivy_parser import load_trivy_results, extract_findings, count_by_severity
+from trivy_report_formatter import report_formatter
 import os
 from dotenv import load_dotenv
 load_dotenv()

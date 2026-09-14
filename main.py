@@ -1,5 +1,5 @@
-from parser import load_trivy_results,extract_findings,count_by_severity
-from report_formatter import report_formatter,get_severity_rank,findings_to_show
+from trivy_parser import load_trivy_results,extract_findings,count_by_severity
+from trivy_report_formatter import report_formatter,get_severity_rank,findings_to_show
 from pr_commentor import post_comment
 import os
 import sys
