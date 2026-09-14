@@ -30,6 +30,10 @@ def count_by_severity(trivy_data):
     return counts
 
 
+
+
+
+
 def extract_findings(trivy_data):
     findings = []
     results=trivy_data.get("Results", [])
@@ -53,6 +57,7 @@ if __name__ == "__main__":
     print(json_path)
     data=load_trivy_results(json_path)
     #print(data)
-    print("\n\n findings:\n\n",extract_findings(data))
-    print("\n \n severitycount= ",count_by_severity(data))
+    #print("\n\n findings:\n\n",extract_findings(data))
+    #print("\n \n severitycount= ",count_by_severity(data))
+    findings=extract_findings(data)
     
