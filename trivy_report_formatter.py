@@ -49,7 +49,7 @@ def report_formatter(findings,count,remaining_count,artifact_url,cap=True):
         table = f"**Summary:** {count['CRITICAL']} CRITICAL, {count['HIGH']} HIGH, {count['MEDIUM']} MEDIUM, {count['LOW']} LOW, {count['UNKNOWN']} UNKNOWN severity issues found.\n Top 50 issues shown below,check artifacts at {artifact_url} for further details" + "\n" + table
     else:
         table = table
-    print("length of table is ",len(table))
+    #print("length of table is ",len(table))
     return table
 
     
