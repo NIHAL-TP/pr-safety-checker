@@ -20,7 +20,7 @@ if __name__ == "__main__":
     severity_count=count_by_severity(trivy_data)
     trivy_findings=extract_findings(trivy_data)
     #print(findings)
-    severity_rank = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
+    #severity_rank = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 4}, "UNKNOWN": 3}
     sorted_findings = sorted(trivy_findings, key=get_severity_rank)
     findings_to_show,remaining_count = findings_to_show(sorted_findings,max_findings_shown)
     formatted_trivy_report=report_formatter(findings_to_show,severity_count,remaining_count,artifact_url,cap=True)
