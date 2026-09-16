@@ -18,11 +18,17 @@ jobs :
                 format : json
                 image-ref: pr-safety-checker:latest
                 output : "trivy-results.json"
+            - name : checkov check
+              uses : bridgecrewio/checkov-action@v12
+              with :
+                directory : terraform-sample
+                soft_fail : true
+                output : "checkov-results.json"
 
             - name : post comment
               run : |
                 pip install python-dotenv requests
-                python3 main.py trivy-results.json
+                python3 main.py trivy-results.json checkov-results.json
               env :
                 GITHUB_TOKEN : ${{secrets.GITHUB_TOKEN}}
                 GITHUB_USER : ${{github.actor}}
@@ -32,7 +38,7 @@ jobs :
               uses : actions/upload-artifact@v4
               with :
                 name : full scan report
-                path : full_report.md
+                path : trivy_report.md
 
 
 
